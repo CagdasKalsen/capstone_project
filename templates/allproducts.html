@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {%block title%} All Products {% endblock title %} {% block content %}
+<div class="container"><br>
+    <h1 class="text-center">All Products</h3>
+        {%for category in allproducts %}
+        <br>
+        <hr><br>
+        <h2 class="text-center">{{category.title}}</h2><br>
+        <div class="row">
+            {% for products in category.product_set.all %}
+            <div class="col-md-4">
+                <h3>{{products.title}}</h3>
+                <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="" />
+                <h4>Price : ${{products.price}}</h4>
+                <a href="" class="btn btn-primary">Add To Cart</a>
+                <br /><br /><br><br>
+            </div><br><br> {% endfor %}
+        </div><br>{%endfor%}
+</div>{% endblock%}

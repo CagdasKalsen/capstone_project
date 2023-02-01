@@ -35,18 +35,19 @@
 
 {% endblock info %} {% block content %}
 <div class="container">
-    <h2 class="text-center">
-        <br><br> All Products</h2><br>
-    <div class="row">
-        <div class="col">
-            <hr> {% for product in products %}
+    <h2 class="text-center">All Products</h2><br>
+    <div class="row mt-3">{% for product in products %}
+        <div class="col-md-4">
             <h3>{{product.title}}</h3>
-            <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt=""><br><br>
-            <!-- <figure class="image is-square">
+            <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="">
+            <h4>Price : ${{product.price}}</h4>
+            <a href="" class="btn btn-primary">Add To Cart</a>
+            <br><br></div>
+        <!-- <figure class="image is-square">
                 <img src="{{product.image}}" alt="{{product.name}}" />
             </figure> -->
-            {% endfor %}
-            <!-- <div class="man">
+        {% endfor %}
+        <!-- <div class="man">
                 <a href="category/">
                     <div class="product text-center">
                         <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width='300px' alt="product4">
@@ -63,8 +64,6 @@
                 </a>
 
             </div> -->
-
-        </div>
     </div>
 </div>
 
