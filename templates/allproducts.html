@@ -8,11 +8,12 @@
         <div class="row">
             {% for products in category.product_set.all %}
             <div class="col-md-4">
-                <h3>{{products.title}}</h3>
+                <h4><a href="{% url 'productdetail' products.pk %}">{{products.title}}</h4><br>
                 <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="" />
-                <h4>Price : ${{products.price}}</h4>
-                <a href="" class="btn btn-primary">Add To Cart</a>
-                <br /><br /><br><br>
+                <h4>Price : ${{products.price}}</h4><br>
+                <!-- <a href="" class="btn btn-primary">Add To Cart</a> -->
+                    </a>
+                    <br /><br /><br><br>
             </div><br><br> {% endfor %}
         </div><br>{%endfor%}
 </div>{% endblock%}

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}{%block title%} Home {% endblock title %} {% block products-slide %}
+
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -38,32 +39,14 @@
     <h2 class="text-center">All Products</h2><br>
     <div class="row mt-3">{% for product in products %}
         <div class="col-md-4">
-            <h3>{{product.title}}</h3>
-            <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="">
-            <h4>Price : ${{product.price}}</h4>
-            <a href="" class="btn btn-primary">Add To Cart</a>
+            <a href="{% url 'productdetail' product.pk %}">
+                <h3>{{product.title}}</h3>
+                <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="">
+                <h4>Price : ${{product.price}}</h4>
+            </a>
+            <a href="{% url 'addtocart' product.pk%}" class="btn btn-primary">Add To Cart</a>
             <br><br></div>
-        <!-- <figure class="image is-square">
-                <img src="{{product.image}}" alt="{{product.name}}" />
-            </figure> -->
         {% endfor %}
-        <!-- <div class="man">
-                <a href="category/">
-                    <div class="product text-center">
-                        <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width='300px' alt="product4">
-                        <p>Man</p>
-                    </div>
-                </a>
-            </div>
-            <div class="product women">
-                <a href="category/">
-                    <div class="goodnessseccont text-center">
-                        <img src="https://cdn.shopify.com/s/files/1/0398/1901/8402/products/29_Rungolee_JacquelineBlouse_MarimekkoFloral_1401_1200x.jpg?v=1663879463" width='200px' alt="product4">
-                        <p>Women</p>
-                    </div>
-                </a>
-
-            </div> -->
     </div>
 </div>
 

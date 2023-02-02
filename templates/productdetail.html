@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %}
+
+<div class="container">
+    <br />
+    <h3 class="text-center">{{product.title}}</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <img src="https://fossil.scene7.com/is/image/FossilPartners/BQ2125_main?$sfcc_fos_large$" alt="" class="img-fluid" /><br /><br />
+        </div>
+        <div class="col-md-6">
+            <br />
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel veniam alias, ut velit molestiae earum qui saepe explicabo eius vitae, nobis necessitatibus consequatur maxime amet sapiente blanditiis quasi neque facere.
+            </p>
+            <h3>${{product.price}}</h3>
+            <p>{{product.pk}}</p>
+            <a href="{% url 'addtocart' product.pk %}" class="btn btn-primary">Add To Cart</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}

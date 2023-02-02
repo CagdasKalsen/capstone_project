@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %}My carts{% endblock%} {% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h4 class="text-center mt-4">My Cart</h4>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in cart.products.all%}
+                    <tr>
+                        <td>{{product.title}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.subtotal}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{%endblock %}
