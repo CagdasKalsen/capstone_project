@@ -10,6 +10,10 @@ from . models import Cart
 # Create your views here.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.urls import reverse
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class Home(TemplateView):
@@ -21,13 +25,40 @@ class Home(TemplateView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class AllProducts(TemplateView):
     template_name = 'allproducts.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['allproducts'] = Category.objects.all()
+        title = self.request.GET.get("title")
+        if title != None:
+            context['products'] = Product.objects.filter(
+                title__icontains=title, user=self.request.user)
+            context['header'] = f"Searching for {title}"
+        else:
+            context['products'] = Product.objects.filter(
+                user=self.request.user)
+            context['header'] = 'All Products'
         return context
+
+        # context['allproducts'] = Category.objects.all()
+        # return context
+
+
+class ProductCreate(CreateView):
+    model = Product
+    fields = ['title', 'category', 'price', 'image', 'description']
+    template_name = 'product_create.html'
+    success_url = "http://localhost:8000/allproducts"
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super(ProductCreate, self).form_valid(form)
+
+    # def get_success_url(self):
+    #     print(self.kwargs)
+    #     return reverse('productdetail', kwargs={'pk': self.object.pk})
 
 
 class ProductDetail(DetailView):
@@ -58,10 +89,10 @@ class MyCart(TemplateView):
 
 
 class Signup(View):
-    def get(self):
+    def get(self, request):
         form = UserCreationForm()
         context = {"form": form}
-        return context
+        return render(request, "registration/signup.html", context)
 
     def post(self, request):
         form = UserCreationForm(request.POST)
@@ -70,4 +101,5 @@ class Signup(View):
             login(request, user)
             return redirect("/")
         else:
-            return redirect("signup")
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)

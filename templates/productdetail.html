@@ -6,12 +6,13 @@
     <hr />
     <div class="row">
         <div class="col-md-6">
-            <img src="https://fossil.scene7.com/is/image/FossilPartners/BQ2125_main?$sfcc_fos_large$" alt="" class="img-fluid" /><br /><br />
+            <img src="{{product.image}}" alt="" class="img-fluid" /><br /><br />
         </div>
         <div class="col-md-6">
             <br />
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel veniam alias, ut velit molestiae earum qui saepe explicabo eius vitae, nobis necessitatibus consequatur maxime amet sapiente blanditiis quasi neque facere.
+                {{product.description}}
+                <!-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel veniam alias, ut velit molestiae earum qui saepe explicabo eius vitae, nobis necessitatibus consequatur maxime amet sapiente blanditiis quasi neque facere. -->
             </p>
             <h3>${{product.price}}</h3>
             <p>{{product.pk}}</p>
