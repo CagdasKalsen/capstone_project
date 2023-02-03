@@ -47,7 +47,14 @@ class ProductCreate(CreateView):
     model = Product
     fields = ['title', 'category', 'price', 'image', 'description']
     template_name = 'product_create.html'
-    success_url = "/allproducts"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ProductCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        print(self.kwargs)
+        return reverse('productdetail', kwargs={'pk': self.object.pk})
 
 
 class ProductDetail(DetailView):

@@ -1,13 +1,12 @@
-{% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %} {% if user.is_authenticated %}
+{% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %}{% if user.is_authenticated %}
 <div class="container">
     <br />
     <h3 class="text-center">{{product.title}}</h3>
     <hr />
+
     <div class="row">
         <div class="col-md-6">
-            <img src="{{product.image}}" alt="{{product.name}}" />
-            <!-- <img src="{{product.image}}" alt="" class="img-fluid" /> -->
-            <br /><br />
+            <img src="{{product.image.url}}" alt="{{product.name}}" /> <br /><br />
         </div>
         <div class="col-md-6">
             <br />
@@ -31,6 +30,7 @@
       <i class="fas fa-trash-alt"> Delete Product</i>
     </span>
             </a>
+            <img src="{{product.image.url}}" width="170px" height="170px" alt="" />
         </div>
         {%else%}
         <div class="container">
@@ -39,9 +39,7 @@
             <hr />
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{product.image}}" alt="{{product.name}}" />
-                    <!-- <img src="{{product.image}}" alt="" class="img-fluid" /> -->
-                    <br /><br />
+                    <img src="{{product.image.url}}" alt="{{product.name}}" /> <br /><br />
                 </div>
                 <div class="col-md-6">
                     <br />
