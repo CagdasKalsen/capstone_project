@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %}
-
+{% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %} {% if user.is_authenticated %}
 <div class="container">
     <br />
     <h3 class="text-center">{{product.title}}</h3>
@@ -23,14 +22,33 @@
 <br />
 <div class="buttons m-3">
   <!-- just like how we added the artist detail link we can do the same thing for update -->
-  <a href="" class="button is-info">
+  <a href="{% url 'product_update' product.pk %}" class="button is-info">
     <span class="icon"> <i class="fas fa-edit"> Edit Product</i> </span
     ><br /><br />
   </a>
-            <a href="" class="button is-danger">
+            <a href="{% url 'product_delete' product.pk %}" class="button is-danger">
                 <span class="icon">
       <i class="fas fa-trash-alt"> Delete Product</i>
     </span>
             </a>
         </div>
-        {% endblock %}
+        {%else%}
+        <div class="container">
+            <br />
+            <h3 class="text-center">{{product.title}}</h3>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{product.image}}" alt="{{product.name}}" />
+                    <!-- <img src="{{product.image}}" alt="" class="img-fluid" /> -->
+                    <br /><br />
+                </div>
+                <div class="col-md-6">
+                    <br />
+                    <p>{{product.description}}</p>
+                    <h3>${{product.price}}</h3>
+                    <p>{{product.pk}}</p>
+                </div>
+            </div>
+        </div>
+        {%endif%} {% endblock %}

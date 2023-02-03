@@ -44,9 +44,11 @@
                 <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="">
                 <h4>Price : ${{product.price}}</h4>
             </a>
+            {% if user.is_authenticated %}
             <a href="{% url 'addtocart' product.pk%}" class="btn btn-primary">Add To Cart</a>
             <br><br></div>
-        {% endfor %}
+        {% else %} {% endif %}{% endfor %}
+        <br><br>
     </div>
 </div>
 

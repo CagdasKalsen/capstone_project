@@ -37,28 +37,17 @@ class AllProducts(TemplateView):
                 title__icontains=title, user=self.request.user)
             context['header'] = f"Searching for {title}"
         else:
-            context['products'] = Product.objects.filter(
+            context['product'] = Product.objects.filter(
                 user=self.request.user)
             context['header'] = 'All Products'
         return context
-
-        # context['allproducts'] = Category.objects.all()
-        # return context
 
 
 class ProductCreate(CreateView):
     model = Product
     fields = ['title', 'category', 'price', 'image', 'description']
     template_name = 'product_create.html'
-    success_url = "http://localhost:8000/allproducts"
-
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super(ProductCreate, self).form_valid(form)
-
-    # def get_success_url(self):
-    #     print(self.kwargs)
-    #     return reverse('productdetail', kwargs={'pk': self.object.pk})
+    success_url = "/allproducts"
 
 
 class ProductDetail(DetailView):
@@ -87,14 +76,20 @@ class MyCart(TemplateView):
         context['cart'] = cart
         return context
 
-# if not working change to products
-
 
 class ProductUpdate(UpdateView):
     model = Product
     fields = ['title', 'category', 'image', 'price', 'description']
     template_name = "product_update.html"
-    success_url = "/product/<int:pk>/"
+
+    def get_success_url(self):
+        return reverse('productdetail', kwargs={'pk': self.object.pk})
+
+
+class ProductDelete(DeleteView):
+    model = Product
+    template_name = "product_delete_confirmation.html"
+    success_url = '/'
 
 
 class Signup(View):

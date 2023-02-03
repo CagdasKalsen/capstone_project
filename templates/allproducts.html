@@ -6,7 +6,7 @@
         <hr><br>
         <h2 class="text-center">{{category.title}}</h2><br>
         <div class="row">
-            <!-- {% for products in category.product_set.all %} -->
+            <!-- {% for products in category.product_set.all %}  -->
             {% for product in products %}
             <div class="col-md-4">
                 <h4><a href="{% url 'productdetail' products.pk %}">{{products.title}}</h4><br>

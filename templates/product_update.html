@@ -1,15 +1,9 @@
-{% for product in products %}
-<!-- Here we are changing the href of the a tag to use the url DTL -->
-<a href="{% url 'allproducts' product.pk %}">
-    <div class="card">
-        <div class="card-image">
-            <figure class="image is-square">
-                <img src="{{product.image}}" alt="{{artist.name}}" />
-            </figure>
-        </div>
-        <div class="card-header">
-            <p class="card-header-title">{{product.name}}</p>
-        </div>
-    </div>
-</a>
-{% endfor %}
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="pt-3">Update {{product.title}}</h1>
+
+<form action="" method="post">
+    {% csrf_token %} {{form.as_p}} <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
