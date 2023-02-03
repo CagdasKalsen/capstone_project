@@ -12,5 +12,10 @@ urlpatterns = [
     path('mycart', views.MyCart.as_view(), name='mycart'),
 
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
-    path('products/new/', views.ProductCreate.as_view(), name="product_create")
+    path('products/new/', views.ProductCreate.as_view(), name="product_create"),
+
+
+    # If not working change to products
+    path('product/<int:pk>/update',
+         views.ProductUpdate.as_view(), name="product_update"),
 ]

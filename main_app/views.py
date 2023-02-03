@@ -87,6 +87,15 @@ class MyCart(TemplateView):
         context['cart'] = cart
         return context
 
+# if not working change to products
+
+
+class ProductUpdate(UpdateView):
+    model = Product
+    fields = ['title', 'category', 'image', 'price', 'description']
+    template_name = "product_update.html"
+    success_url = "/product/<int:pk>/"
+
 
 class Signup(View):
     def get(self, request):

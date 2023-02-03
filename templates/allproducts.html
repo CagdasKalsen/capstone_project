@@ -6,15 +6,16 @@
         <hr><br>
         <h2 class="text-center">{{category.title}}</h2><br>
         <div class="row">
-            {% for products in category.product_set.all %}
+            <!-- {% for products in category.product_set.all %} -->
+            {% for product in products %}
             <div class="col-md-4">
                 <h4><a href="{% url 'productdetail' products.pk %}">{{products.title}}</h4><br>
-                <img src="https://www.kuhl.com/media/versions/pdp/7202_mdhv_p_1_pdp_photo.jpg" width="170px" alt="" />
+                <img src="{{products.image}}" width="170px" alt="" />
                 <h4>Price : ${{products.price}}</h4><br>
                 <!-- <a href="" class="btn btn-primary">Add To Cart</a> -->
                     </a>
                     <br /><br /><br><br>
             </div><br><br> {% endfor %}
-        </div><br>{%endfor%}
+        </div><br> {%endfor%}
         <!-- <a class="button is-dark" href="{% url 'product_create' %}">Add a product</a> -->
-</div>{% endblock%}
+</div>{% endfor %}{%endblock%}

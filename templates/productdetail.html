@@ -6,14 +6,13 @@
     <hr />
     <div class="row">
         <div class="col-md-6">
-            <img src="{{product.image}}" alt="" class="img-fluid" /><br /><br />
+            <img src="{{product.image}}" alt="{{product.name}}" />
+            <!-- <img src="{{product.image}}" alt="" class="img-fluid" /> -->
+            <br /><br />
         </div>
         <div class="col-md-6">
             <br />
-            <p>
-                {{product.description}}
-                <!-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel veniam alias, ut velit molestiae earum qui saepe explicabo eius vitae, nobis necessitatibus consequatur maxime amet sapiente blanditiis quasi neque facere. -->
-            </p>
+            <p>{{product.description}}</p>
             <h3>${{product.price}}</h3>
             <p>{{product.pk}}</p>
             <a href="{% url 'addtocart' product.pk %}" class="btn btn-primary">Add To Cart</a
@@ -21,4 +20,17 @@
     </div>
   </div>
 </div>
-{% endblock %}
+<br />
+<div class="buttons m-3">
+  <!-- just like how we added the artist detail link we can do the same thing for update -->
+  <a href="" class="button is-info">
+    <span class="icon"> <i class="fas fa-edit"> Edit Product</i> </span
+    ><br /><br />
+  </a>
+            <a href="" class="button is-danger">
+                <span class="icon">
+      <i class="fas fa-trash-alt"> Delete Product</i>
+    </span>
+            </a>
+        </div>
+        {% endblock %}
