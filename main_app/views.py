@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from . models import Product
+from . models import Product, Customers
 from . models import Category
 from . models import Cart
 # Create your views here.
@@ -29,18 +29,18 @@ class Home(TemplateView):
 class AllProducts(TemplateView):
     template_name = 'allproducts.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        title = self.request.GET.get("title")
-        if title != None:
-            context['products'] = Product.objects.filter(
-                title__icontains=title, user=self.request.user)
-            context['header'] = f"Searching for {title}"
-        else:
-            context['product'] = Product.objects.filter(
-                user=self.request.user)
-            context['header'] = 'All Products'
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     title = self.request.GET.get("title")
+    #     if title != None:
+    #         context['products'] = Product.objects.filter(
+    #             title__icontains=title, user=self.request.user)
+    #         context['header'] = f"Searching for {title}"
+    #     else:
+    #         context['product'] = Product.objects.filter(
+    #             user=self.request.user)
+    #         context['header'] = 'All Products'
+    #     return context
 
 
 class ProductCreate(CreateView):
@@ -64,10 +64,14 @@ class ProductDetail(DetailView):
 
 class AddToCart(View):
     def get(self, request, product_id):
-        print(product_id)
-        cart = Cart.objects.get(pk=1)
+        cart = Cart.objects.get(pk=4)
         cart.products.add(product_id)
-        return redirect('home')
+        return redirect('mycart')
+    # def get(self, request, product_id):
+    #     product = Product.objects.get(id=product_id)
+    #     cart = Cart.objects.get(customer=request.user.pk)
+    #     cart.products.add(product)
+    #     return redirect('mycart')
 
 
 class About(TemplateView):
@@ -76,10 +80,11 @@ class About(TemplateView):
 
 class MyCart(TemplateView):
     template_name = "mycart.html"
+    # model = Customers
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cart = Cart.objects.get(pk=1)
+        cart = Cart.objects.get(pk=4)
         context['cart'] = cart
         return context
 
@@ -97,6 +102,12 @@ class ProductDelete(DeleteView):
     model = Product
     template_name = "product_delete_confirmation.html"
     success_url = '/'
+
+
+class ItemDelete(DeleteView):
+    model = Cart
+    template_name = "cart_update.html"
+    success_url = 'mycart'
 
 
 class Signup(View):

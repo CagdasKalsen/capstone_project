@@ -1,9 +1,11 @@
 {% extends 'base.html' %} {% block content %}
+<div class="bg-body-tertiary">
+    <h1 class="pt-3 text-center">Update {{product.title}}</h1>
 
-<h1 class="pt-3">Update {{product.title}}</h1>
-
-<form action="" method="post">
-    {% csrf_token %} {{form.as_p}} <input type="submit" value="Submit" />
-</form>
+    <form action="" method="post" class="m-5">
+        {% csrf_token %} {{form.as_p}}
+        <input type="submit" value="Submit" class="btn btn-primary btn-md btn-block mt-5" />
+    </form>
+</div>
 
 {% endblock %}

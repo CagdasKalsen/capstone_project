@@ -1,52 +1,50 @@
 {% extends 'base.html' %} {% block title %} {{product.title}} {% endblock %} {% block content %}{% if user.is_authenticated %}
-<div class="container">
+<div class="container m-5">
     <br />
     <h3 class="text-center">{{product.title}}</h3>
     <hr />
 
     <div class="row">
+        <div class="col">
+            <img width="600px" src="{{product.image.url}}" alt="{{product.name}}" />
+            <br /><br />
+        </div>
+        <div class="col-md-4">
+            <br />
+            <p class="m-1">{{product.description}}</p>
+            <h3>${{product.price}}</h3>
+            <!-- <a href="/mycart" class="btn btn-primary">Add To Cart</a> -->
+            <div class="buttons m-5">
+                <a href="{% url 'product_update' product.pk %}" class="button is-info">
+                    <span class="icon"> <i class="fas fa-edit"> Edit Product</i> </span
+          ><br /><br />
+        </a>
+        <a
+          href="{% url 'product_delete' product.pk %}"
+          class="button is-danger"
+        >
+          <span class="icon">
+            <i class="fas fa-trash-alt"> Delete Product</i>
+          </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br /> {%else%}
+<div class="container">
+    <br />
+    <h3 class="text-center">{{product.title}}</h3>
+    <hr />
+    <div class="row">
         <div class="col-md-6">
-            <img src="{{product.image.url}}" alt="{{product.name}}" /> <br /><br />
+            <img src="{{product.image.url}} " alt="{{product.name}} " /> <br /><br />
         </div>
         <div class="col-md-6">
             <br />
             <p>{{product.description}}</p>
             <h3>${{product.price}}</h3>
-            <p>{{product.pk}}</p>
-            <a href="{% url 'addtocart' product.pk %}" class="btn btn-primary">Add To Cart</a
-      >
+        </div>
     </div>
-  </div>
 </div>
-<br />
-<div class="buttons m-3">
-  <!-- just like how we added the artist detail link we can do the same thing for update -->
-  <a href="{% url 'product_update' product.pk %}" class="button is-info">
-    <span class="icon"> <i class="fas fa-edit"> Edit Product</i> </span
-    ><br /><br />
-  </a>
-            <a href="{% url 'product_delete' product.pk %}" class="button is-danger">
-                <span class="icon">
-      <i class="fas fa-trash-alt"> Delete Product</i>
-    </span>
-            </a>
-            <!-- <img src="{{product.image.url}}" width="170px" height="170px" alt="" /> -->
-        </div>
-        {%else%}
-        <div class="container">
-            <br />
-            <h3 class="text-center">{{product.title}}</h3>
-            <hr />
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{{product.image.url}} " alt="{{product.name}} " /> <br /><br />
-                </div>
-                <div class="col-md-6">
-                    <br />
-                    <p>{{product.description}}</p>
-                    <h3>${{product.price}}</h3>
-                    <!-- <p>{{product.pk}}</p> -->
-                </div>
-            </div>
-        </div>
-        {%endif%} {% endblock %}
+{%endif%} {% endblock %}

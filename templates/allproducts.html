@@ -4,11 +4,11 @@
         {%for category in allproducts %}
         <br>
         <hr><br>
-        <h2 class="text-center">{{category.title}}</h2><br>
+        <h2 class="text-center">{{category}}</h2><br>
         <div class="row">
             <!-- {% for products in category.product_set.all %}  -->
             {% for product in products %}
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 <h4><a href="{% url 'productdetail' products.pk %}">{{products.title}}</h4><br>
                 <img src="{{products.image}}" width="170px" alt="" />
                 <h4>Price : ${{products.price}}</h4><br>

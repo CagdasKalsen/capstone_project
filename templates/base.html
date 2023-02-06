@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/static/styles/main.css" />
     <link rel="stylesheet" href="{% static 'styles/main.css' %}" } />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="{% static 'scripts/main.js' %}" defer></script>
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="https://w7.pngwing.com/pngs/384/470/png-transparent-retail-computer-icons-e-commerce-sales-mega-offer-miscellaneous-service-logo.png" width="80" height="65" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/category" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categories
               </a>
@@ -42,15 +43,33 @@
                         <a class="dropdown-item" href="/category">Women</a>
                     </li>
                     </ul>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About Us</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <!-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                     <button class="btn btn-outline-dark" type="submit">Search</button>
-                </form>
+                </form> -->
+                <div class="gallery">
+                    {%if product %} {% for product in products %}
+                    <a href="">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img class="small" src="{{product.image}}" alt="{{product.title}}" />
+                                </figure>
+                            </div>
+
+                            <div class="card-header">
+                                <!-- <p class="card-header-title">{{product.title}}</p> -->
+                                <a class="text-black">{{product.title}}</a>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}{%endif%}
+                </div>
             </div>
             {% if user.is_authenticated %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -58,11 +77,14 @@
                     <a class="nav-link dropdown-toggle text-white" href="'#" id="profileDropDown" role="button" data-bs-toggle="dropdown" aria-expended="false">Welcome: {{user.username}}</a
             >
             <ul class="dropdown-menu" aria-labelledby="profileDropDown">
-              <li><a class="'dropdown-item" href="'#">Profile</a></li>
+              <!-- <li><a class="'dropdown-item" href="'#">Profile</a></li>
                 <li><a class="'dropdown-item" href="'#">Orders</a></li>
-                <li><a class="'dropdown-item" href="'#">Change Password</a></li>
-                <a class="button is-dark" href="{% url 'product_create' %}">Add Product</a>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                <li><a class="'dropdown-item" href="'#">Change Password</a></li> -->
+                <a class="button is-dark text-decoration-none text-black m-3" href="{% url 'product_create' %}">Add Product</a
+              >
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </li>
             </ul>
             </li>
             <li class="'nav-item mx-2">
@@ -80,7 +102,7 @@
         {% endif %}
     </nav>
     {% block products-slide %}{% endblock products-slide %}{% block info %}{% endblock info %} {% block content %}{% endblock content %}
-    <footer class="container-fluid fixed-bottom bg-secondary text-center p-3 mt-4">
+    <footer class="container-fluid fixed-bottom bg-dark text-center text-white p-3 mt-4">
         Copyright : 2023 || Develop by : Cagdas Kalsen
     </footer>
 </body>

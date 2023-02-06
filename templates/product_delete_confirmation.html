@@ -1,11 +1,13 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="title pt-5">Are you sure you want to Delete {{product.title}}?</h1>
-<form method="post">
-    {% csrf_token %}
-    <div class="buttons">
-        <input class="button is-danger" type="submit" value="Confirm" />
-        <a class="button is-primary" href="{% url 'productdetail' product.pk %}">Cancel</a
-    >
-  </div>
-</form>
+<div class="container m-5">
+    <h1 class="title pt-5">Are you sure you want to Delete {{product.title}}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="buttons">
+            <input class="btn bg-primary m-5" type="submit" value="Confirm" />
+            <a class="btn bg-primary text-decoration-none text-black" href="{% url 'productdetail' product.pk %}">Cancel</a
+      >
+    </div>
+  </form>
+</div>
 {% endblock %}

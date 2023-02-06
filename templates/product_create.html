@@ -1,10 +1,15 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Add a Product</h1>
+<h1 class="text-center m-3">Add a Product</h1>
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} {{form.as_p}}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %} {{form.as_p}}
-
-    <input type="submit" value="Submit" />
-</form>
+            <button type="submit" class="btn btn-primary btn-md btn-block mt-5">
+        <i class="fas fa-check"></i> Submit
+      </button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
