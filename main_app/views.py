@@ -64,7 +64,7 @@ class ProductDetail(DetailView):
 
 class AddToCart(View):
     def get(self, request, product_id):
-        cart = Cart.objects.get(pk=5)
+        cart = Cart.objects.get(pk=4)
         cart.products.add(product_id)
         return redirect('mycart')
     # def get(self, request, product_id):
@@ -84,7 +84,7 @@ class MyCart(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        cart = Cart.objects.get(pk=5)
+        cart = Cart.objects.get(pk=4)
         context['cart'] = cart
         return context
 
